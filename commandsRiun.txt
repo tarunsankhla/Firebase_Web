@@ -1,0 +1,33 @@
+Firebase serve -> run server
+firebase init
+firebase use projectID -> to connect
+npm install firebase
+I could not run firebase deploy --only firestore:rules because my firebase.json file was not initialized with defaults.
+
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
+
+{
+  "hosting": {
+    "public": "public"
+  }
+}
+firebase login
+
+
+Install firebase tools. Use: npm install -g firebase-tools
+Login using: firebase login
+Initialize your firebase: firebase init In this step you need to select your firebase account and the application folder you want to deploy on firebase.
+Then to deploy the code: firebase deploy
+
+
+https://github.com/WaelYasmina/fire-auth
+using angular => https://jsmobiledev.com/article/firebase-phone-authentication/
