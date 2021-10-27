@@ -37,7 +37,7 @@ const signInWithPhone = sentCodeId => {
   const code = codeField.value;
 
   var obj ={sentCodeId,code}
-  console.log("object :: ",obj)
+  console.log("object ::",obj)
   console.log("User Register");
   const data = {otp: code,verificationId: sentCodeId};
   const e = JSON.stringify(data);
@@ -65,6 +65,7 @@ const signInWithPhone = sentCodeId => {
   // A credential object (contains user's data) is created after a comparison between the 6 digit code sent to the user's phone
   // and the code typed by the user in the code field on the html form.
   const credential = firebase.auth.PhoneAuthProvider.credential(sentCodeId, code);
+  console.log("credentials:",credential);
   auth.signInWithCredential(credential)
   .then(() => {
     console.log('Signed in successfully !');

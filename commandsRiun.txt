@@ -22,6 +22,7 @@ I could not run firebase deploy --only firestore:rules because my firebase.json 
 }
 firebase login
 
+npm run build
 
 Install firebase tools. Use: npm install -g firebase-tools
 Login using: firebase login
