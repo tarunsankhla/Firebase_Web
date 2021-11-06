@@ -11,12 +11,29 @@ const auth = firebase.auth();
 // const firebaseConfig = {
 //   //...
 // };
+window.onload = function () {
+  render();
+};
+var verificaionId =0 ;
+function render() {
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+    'size': 'invisible',
+    'badge': 'bottomleft',
+    'callback': (response) => {
+      console.log("response render", response);
+    },
+    'expired-callback': () => {
+      console.log("expired callback!")
+    }
+  });
+  recaptchaVerifier.render();
+}
 
 // Creates and render the captcha
-window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-recaptchaVerifier.render().then(widgetId => {
-  window.recaptchaWidgetId = widgetId;
-})
+// window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+// recaptchaVerifier.render().then(widgetId => {
+//   window.recaptchaWidgetId = widgetId;
+// })
 
 const sendVerificationCode = () => {
   const phoneNumber = phoneNumberField.value;
@@ -87,7 +104,7 @@ const signInWithPhone = sentCodeId => {
             firebase.auth().signOut();
         }
     });
-    
+
   firebase.auth().signInWithCredential(credential)
   .then(async(data) => {
     console.log('Signed in successfully with async !qqqq');
