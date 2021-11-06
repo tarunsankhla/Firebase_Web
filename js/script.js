@@ -11,29 +11,13 @@ const auth = firebase.auth();
 // const firebaseConfig = {
 //   //...
 // };
-window.onload = function () {
-  render();
-};
-var verificaionId =0 ;
-function render() {
-  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-    'size': 'invisible',
-    'badge': 'bottomleft',
-    'callback': (response) => {
-      console.log("response render", response);
-    },
-    'expired-callback': () => {
-      console.log("expired callback!")
-    }
-  });
-  recaptchaVerifier.render();
-}
+
 
 // Creates and render the captcha
-// window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-// recaptchaVerifier.render().then(widgetId => {
-//   window.recaptchaWidgetId = widgetId;
-// })
+window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+recaptchaVerifier.render().then(widgetId => {
+  window.recaptchaWidgetId = widgetId;
+})
 
 const sendVerificationCode = () => {
   const phoneNumber = phoneNumberField.value;
@@ -81,7 +65,7 @@ const signInWithPhone = sentCodeId => {
 
   // A credential object (contains user's data) is created after a comparison between the 6 digit code sent to the user's phone
   // and the code typed by the user in the code field on the html form.
-  // const credential = firebase.auth.PhoneAuthProvider.credential(sentCodeId, code);
+  const credential = firebase.auth.PhoneAuthProvider.credential(sentCodeId, code);
   // console.log("credentials:",credential);
   // auth.signInWithCredential(credential)
   // .then((data) => {
