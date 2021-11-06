@@ -32,3 +32,6 @@ Then to deploy the code: firebase deploy
 
 https://github.com/WaelYasmina/fire-auth
 using angular => https://jsmobiledev.com/article/firebase-phone-authentication/
+
+
+https://stackoverflow.com/questions/49582984/how-do-i-disable-js-file-is-a-commonjs-module-it-may-be-converted-to-an-es6

@@ -43,23 +43,23 @@ const signInWithPhone = sentCodeId => {
   const e = JSON.stringify(data);
   console.log("e :: ",e)
   //api
-  fetch(' http://localhost:8080/firebase', {
-    method: 'POST',
-    body:e,
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8'
-    }
-  }).then(function (response) {
-    console.log("response ok !")
-    if (response.ok) {
-      return response.json();
-    }
-    return Promise.reject(response);
-  }).then(function (data) {
-    console.log("data then:",data);
-  }).catch(function (error) {
-    console.warn('Something went wrong.', error);
-  });
+  // fetch(' http://localhost:8080/firebase', {
+  //   method: 'POST',
+  //   body:e,
+  //   headers: {
+  //     'Content-type': 'application/json; charset=UTF-8'
+  //   }
+  // }).then(function (response) {
+  //   console.log("response ok !")
+  //   if (response.ok) {
+  //     return response.json();
+  //   }
+  //   return Promise.reject(response);
+  // }).then(function (data) {
+  //   console.log("data then:",data);
+  // }).catch(function (error) {
+  //   console.warn('Something went wrong.', error);
+  // });
   
 
   // A credential object (contains user's data) is created after a comparison between the 6 digit code sent to the user's phone
@@ -67,13 +67,33 @@ const signInWithPhone = sentCodeId => {
   const credential = firebase.auth.PhoneAuthProvider.credential(sentCodeId, code);
   console.log("credentials:",credential);
   auth.signInWithCredential(credential)
-  .then(() => {
+  .then((data) => {
     console.log('Signed in successfully !');
+    console.log("sign without async",data);
     // window.location.href()
     // window.location.assign('./profile');
   })
   .catch(error => {
-    console.error(error);
+    console.error("error without async",error);
+  })
+
+
+  firebase.auth().signInWithCredential(credential)
+  .then(async(data) => {
+    console.log('Signed in successfully !qqqq');
+      console.log("sign async",data)
+      
+  })
+  .catch(err => {
+      console.log("erorr from asynce",err)
+      console.log("async", data)
+      return response.send({
+          success: false,
+          code: 501,
+          exists: false,
+          message: `Firebase error`,
+          response: err
+      })
   })
 }
 
