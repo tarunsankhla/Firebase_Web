@@ -66,17 +66,17 @@ const signInWithPhone = sentCodeId => {
   // A credential object (contains user's data) is created after a comparison between the 6 digit code sent to the user's phone
   // and the code typed by the user in the code field on the html form.
   const credential = firebase.auth.PhoneAuthProvider.credential(sentCodeId, code);
-  // console.log("credentials:",credential);
-  // auth.signInWithCredential(credential)
-  // .then((data) => {
-  //   console.log('Signed in successfully !');
-  //   console.log("sign without async",data);
-  //   // window.location.href()
-  //   // window.location.assign('./profile');
-  // })
-  // .catch(error => {
-  //   console.error("error without async",error);
-  // })
+  console.log("credentials:",credential);
+  auth.signInWithCredential(credential)
+  .then((data) => {
+    console.log('Signed in successfully !');
+    console.log("sign without async",data);
+    // window.location.href()
+    // window.location.assign('./profile');
+  })
+  .catch(error => {
+    console.error("error without async",error);
+  })
 
   firebase.auth().onAuthStateChanged((user) => {
         console.log("inside auth change !!")
